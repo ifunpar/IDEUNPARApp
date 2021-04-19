@@ -28,7 +28,8 @@ import { CoreUtilsProvider, PromiseDefer } from '@providers/utils/utils';
 import { CoreFileUploaderProvider, CoreFileUploaderOptions } from './fileuploader';
 import { CoreFileUploaderDelegate } from './delegate';
 import { CoreSites } from '@providers/sites';
-
+ 
+declare var cordova:any;
 /**
  * Helper service to upload files.
  */
@@ -663,6 +664,64 @@ export class CoreFileUploaderHelperProvider {
     }
 
     /**
+     * 
+     * @param fromAlbum True if image would be selected from the album
+     * @param maxSize Max size of the upload. -1 for no max size.
+     * @param upload True if file should be uploaded, false to return to picked file.
+     * @param mimetypes List of supported mimetypes.  
+     * @return Promise solved when done.
+     */
+    scanImage(maxSize : number, upload?:boolean, mimetypes?: string[]): Promise<any>{
+
+        const camOpts: CameraOptions = {
+            quality: 50,
+            destinationType: this.camera.DestinationType.FILE_URI,
+            correctOrientation: true
+        };
+
+        return this.fileUploaderProvider.getPicture(camOpts).then((path) => {
+            const error = this.fileUploaderProvider.isInvalidMimetype(mimetypes, path); // Verify that the mimetype is supported.
+            if (error) {
+                return Promise.reject(error);
+            }
+                const html = '<html> <img src="'+ path +'" style="width: 100%; height 100%"> </html>';
+                this.logger.debug(html);
+                var currentDate = new Date();
+                return cordova.plugins.pdf.fromData(html,{
+                    fileName : 'my-pdf'+currentDate.getTime()+'.pdf',
+                    landscape : "portrait",
+                    type : "base64" //Using this type because the document will be uploaded right away.
+                }).then((base64)=>{   
+                    //converting to blob
+                    const blob = this.base64ToBlob(base64);
+                    
+                    const contentType = 'application/pdf'
+                    const folderPath = "Download/my-pdf"+currentDate.getTime()+".pdf";
+                    return this.fileProvider.writeFile(folderPath, blob).then((fileEntry)=>{
+                        const options = this.fileUploaderProvider.getFileUploadOptions(fileEntry.nativeURL, 'my-pdf'+currentDate.getTime()+'.pdf',  contentType, true);
+                        if(upload){;
+                            this.logger.debug("uploaded");
+                            return this.uploadFile(fileEntry.nativeURL, -1, false, options);
+                        } else {
+                            // Copy or move the file to our temporary folder.
+                            this.logger.debug("Copy to temp");
+                            return this.copyToTmpFolder('Download/', false, maxSize, 'pdf', options);
+                        }
+                    
+                    },
+                    (error) => {
+                        this.logger.error(error);
+                    });
+                },(error) => {
+                    const defaultError = 'core.fileuploader.errorcapturingimage';
+                    console.error(error);
+                    return this.treatImageError(error, defaultError);
+                });
+        });
+    
+    }
+
+    /**
      * Upload a file given the file entry.
      *
      * @param fileEntry The file entry.
@@ -675,6 +734,7 @@ export class CoreFileUploaderHelperProvider {
      */
     uploadFileEntry(fileEntry: any, deleteAfter: boolean, maxSize?: number, upload?: boolean, allowOffline?: boolean,
             name?: string): Promise<any> {
+        this.logger.debug(fileEntry.toString());
         return this.fileProvider.getFileObjectFromFileEntry(fileEntry).then((file) => {
             return this.uploadFileObject(file, maxSize, upload, allowOffline, name).then((result) => {
                 if (deleteAfter) {
@@ -823,5 +883,38 @@ export class CoreFileUploaderHelperProvider {
                 }
             }
         }
+    }
+
+    /**
+     * Converts a base64 to blob to be uploade
+     * 
+     * @param base64Data base64 data to be converted
+     * @param contentType desired file type
+     * @param sliceSize slice size to process byteChar
+     * @returns blob converted from the base64 data
+     */    
+    protected base64ToBlob(base64Data, contentType?, sliceSize?){
+        contentType = contentType || '';
+        sliceSize = sliceSize || 512;
+
+        var byteChar = atob(base64Data);
+        var byteArrays = [];
+
+        for (var offset = 0; offset < byteChar.length; offset += sliceSize) {
+            var slice = byteChar.slice(offset, offset + sliceSize);
+ 
+            var byteNumbers = new Array(slice.length);
+            for (var i = 0; i < slice.length; i++) {
+                byteNumbers[i] = slice.charCodeAt(i);
+            }
+ 
+            var byteArray = new Uint8Array(byteNumbers);
+ 
+            byteArrays.push(byteArray);
+        }
+
+        var blob = new Blob(byteArrays,  {type : contentType});
+        return blob;
+ 
     }
 }
