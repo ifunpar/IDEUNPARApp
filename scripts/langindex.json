@@ -1862,6 +1862,7 @@
   "core.mainmenu.help": "moodle",
   "core.mainmenu.logout": "moodle",
   "core.mainmenu.website": "local_moodlemobileapp",
+  "core.mainmenu.studentportal" : "local_moodlemobileapp",
   "core.maxfilesize": "moodle",
   "core.maxsizeandattachments": "moodle",
   "core.min": "moodle",

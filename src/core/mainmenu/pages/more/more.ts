@@ -207,4 +207,11 @@ export class CoreMainMenuMorePage implements OnDestroy {
     logout(): void {
         this.sitesProvider.logout();
     }
+
+    /**
+     * Open https://studentportal.unpar.ac.id
+     */
+    openStudentPortal() : void{
+        this.utils.openInBrowser( "https://studentportal.unpar.ac.id" );
+    }
 }

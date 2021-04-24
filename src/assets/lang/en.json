@@ -1861,6 +1861,7 @@
     "core.mainmenu.changesite": "Change site",
     "core.mainmenu.help": "Help",
     "core.mainmenu.logout": "Log out",
+    "core.mainmenu.studentportal": "Student portal UNPAR",
     "core.mainmenu.website": "Website",
     "core.maxfilesize": "Maximum size for new files: {{$a}}",
     "core.maxsizeandattachments": "Maximum file size: {{$a.size}}, maximum number of files: {{$a.attachments}}",
