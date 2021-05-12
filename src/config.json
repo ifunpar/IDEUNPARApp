@@ -2,7 +2,7 @@
     "app_id": "id.ac.unpar.moodlemobile",
     "appname": "IDE UNPAR Mobile",
     "desktopappname": "IDE UNPAR Desktop",
-    "versioncode": 20000,
+    "versioncode": 20001,
     "versionname": "2.0",
     "cache_update_frequency_usually": 420000,
     "cache_update_frequency_often": 1200000,
