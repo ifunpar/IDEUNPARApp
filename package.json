@@ -195,7 +195,7 @@
       "cordova-plugin-badge": {},
       "cordova-plugin-camera": {},
       "cordova-plugin-customurlscheme": {
-        "URL_SCHEME": "idemobile"
+        "URL_SCHEME": "moodlemobile"
       },
       "cordova-plugin-device": {},
       "cordova-plugin-file": {},
@@ -267,7 +267,7 @@
       {
         "name": "Moodle Mobile URL",
         "schemes": [
-          "idemobile"
+          "moodlemobile"
         ],
         "role": "Viewer"
       }
