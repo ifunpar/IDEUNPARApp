@@ -49,7 +49,10 @@
         </a>
         <a ion-item (click)="openSitePreferences()" title="{{ 'core.settings.preferences' | translate }}">
             <core-icon name="fa-wrench" item-start></core-icon>
-            <h2>{{ 'core.settings.preferences' | translate }}</h2>
+            <h2>{{ 'core.settings.preferences' | translate }}</h2> </a>
+        <a ion-item (click)="logout()" title="{{ logoutLabel | translate }}">
+            <ion-icon name="log-out" item-start aria-hidden="true"></ion-icon>
+            <h2>{{ logoutLabel | translate }}</h2>
         </a>
         <ion-item-divider></ion-item-divider>
         <a ion-item (click)="openAppSettings()" title="{{ 'core.settings.appsettings' | translate }}">
