@@ -11,6 +11,8 @@
 // WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 // See the License for the specific language governing permissions and
 // limitations under the License.
+//
+// THIS FILE HAS BEEN MODIFIED FOR THE PURPOSE OF COMPLETING THE THESIS 'MOBILE APPLCIATION FOR THE IDE UNPAR BASED ON MOODLE APP' 2021
 
 import { NgModule } from '@angular/core';
 import { CoreFileUploaderProvider } from './providers/fileuploader';
