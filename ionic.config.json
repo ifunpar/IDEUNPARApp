@@ -1,10 +1,11 @@
 {
   "name": "IDE UNPAR Mobile",
   "integrations": {
-    "cordova": {},
-    "gulp": {}
+    "cordova": {}
   },
-  "type": "ionic-angular",
-  "watchPatterns": [],
-  "id": "id.ac.unpar.moodlemobile"
+  "type": "angular",
+  "hooks": {
+    "build:before": "./scripts/copy-assets.js",
+    "serve:before": "./scripts/copy-assets.js"
+  }
 }
