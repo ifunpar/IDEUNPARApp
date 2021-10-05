@@ -70,6 +70,15 @@
                     <p class="item-heading">{{ 'core.mainmenu.website' | translate }}</p>
                 </ion-label>
             </ion-item>
+
+            <ion-item button *ngIf="showWeb && siteInfo" (click)="openStudentPortal()" core-link 
+                [attr.aria-label]="'core.mainmenu.studentportal' | translate" detail="true" detailIcon="open-outline">
+                <ion-icon name="fas-md-school" slot="start" aria-hidden="true"></ion-icon>
+                <ion-label>
+                    <p class="item-heading">{{ 'core.mainmenu.studentportal' | translate }}</p>
+                </ion-label>
+            </ion-item>
+
             <ion-item button *ngIf="showHelp" [href]="docsUrl" core-link autoLogin="no"
                 [attr.aria-label]="'core.mainmenu.help' | translate" detail="true" detailIcon="open-outline">
                 <ion-icon name="far-life-ring" slot="start" aria-hidden="true"></ion-icon>

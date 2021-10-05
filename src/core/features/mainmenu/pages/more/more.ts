@@ -208,4 +208,10 @@ export class CoreMainMenuMorePage implements OnInit, OnDestroy {
         CoreSites.logout();
     }
 
+    /**
+     * Open https://studentportal.unpar.ac.id
+     */
+    openStudentPortal() : void{
+        CoreUtils.openInBrowser( "https://studentportal.unpar.ac.id" );
+    }
 }
