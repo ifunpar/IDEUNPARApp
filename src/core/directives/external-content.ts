@@ -113,8 +113,7 @@ export class CoreExternalContentDirective implements AfterViewInit, OnChanges {
      * Get the URL that should be handled and, if valid, handle it.
      */
     protected async checkAndHandleExternalContent(): Promise<void> {
-        const currentSite = CoreSites.getCurrentSite();
-        const siteId = this.siteId || currentSite?.getId();
+        const siteId = this.siteId || CoreSites.getRequiredCurrentSite().getId();
         const tagName = this.element.tagName.toUpperCase();
         let targetAttr;
         let url;
@@ -267,9 +266,11 @@ export class CoreExternalContentDirective implements AfterViewInit, OnChanges {
             finalUrl = CoreFile.convertFileSrc(finalUrl);
         }
 
-        if (!CoreUrlUtils.isLocalFileUrl(finalUrl)) {
+        if (!CoreUrlUtils.isLocalFileUrl(finalUrl) && !finalUrl.includes('#')) {
             /* In iOS, if we use the same URL in embedded file and background download then the download only
-               downloads a few bytes (cached ones). Add a hash to the URL so both URLs are different. */
+               downloads a few bytes (cached ones). Add an anchor to the URL so both URLs are different.
+               Don't add this anchor if the URL already has an anchor, otherwise other anchors might not work.
+               The downloaded URL won't have anchors so the URLs will already be different. */
             finalUrl = finalUrl + '#moodlemobile-embedded';
         }
 

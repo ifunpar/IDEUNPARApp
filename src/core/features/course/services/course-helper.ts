@@ -39,7 +39,6 @@ import {
     CoreCourseSearchedData,
     CoreEnrolledCourseData,
 } from '@features/courses/services/courses';
-import { CoreEnrolledCourseDataWithExtraInfoAndOptions } from '@features/courses/services/courses-helper';
 import { CoreArray } from '@singletons/array';
 import { CoreIonLoadingElement } from '@classes/ion-loading';
 import { CoreCourseOffline } from './course-offline';
@@ -191,8 +190,8 @@ export class CoreCourseHelperProvider {
 
             hasContent = true;
 
-            section.modules.forEach((module) => {
-                module.handlerData = CoreCourseModuleDelegate.getModuleDataFor(
+            section.modules.forEach(async (module) => {
+                module.handlerData = await CoreCourseModuleDelegate.getModuleDataFor(
                     module.modname,
                     module,
                     courseId,
@@ -424,7 +423,7 @@ export class CoreCourseHelperProvider {
      * @return Resolved when downloaded, rejected if error or canceled.
      */
     async confirmAndPrefetchCourses(
-        courses: CoreEnrolledCourseDataWithExtraInfoAndOptions[],
+        courses: CoreCourseAnyCourseData[],
         options: CoreCourseConfirmPrefetchCoursesOptions = {},
     ): Promise<void> {
         const siteId = CoreSites.getCurrentSiteId();
@@ -1302,7 +1301,7 @@ export class CoreCourseHelperProvider {
      * @return Promise resolved when done.
      */
     async prefetchCourses(
-        courses: CoreEnrolledCourseDataWithExtraInfoAndOptions[],
+        courses: CoreCourseAnyCourseData[],
         prefetch: CorePrefetchStatusInfo,
         options: CoreCoursePrefetchCoursesOptions = {},
     ): Promise<void> {
@@ -1611,7 +1610,7 @@ export class CoreCourseHelperProvider {
 
             if (CoreSites.getCurrentSiteId() == site.getId()) {
                 // Try to use the module's handler to navigate cleanly.
-                module.handlerData = CoreCourseModuleDelegate.getModuleDataFor(
+                module.handlerData = await CoreCourseModuleDelegate.getModuleDataFor(
                     module.modname,
                     module,
                     courseId,
@@ -1665,9 +1664,9 @@ export class CoreCourseHelperProvider {
      * @param modParams Params to pass to the module
      * @param True if module can be opened, false otherwise.
      */
-    openModule(module: CoreCourseModule, courseId: number, sectionId?: number, modParams?: Params): boolean {
+    async openModule(module: CoreCourseModule, courseId: number, sectionId?: number, modParams?: Params): Promise<boolean> {
         if (!module.handlerData) {
-            module.handlerData = CoreCourseModuleDelegate.getModuleDataFor(
+            module.handlerData = await CoreCourseModuleDelegate.getModuleDataFor(
                 module.modname,
                 module,
                 courseId,

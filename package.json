@@ -23,7 +23,7 @@
     "serve:test": "NODE_ENV=testing ionic serve --no-open",
     "build": "ionic build",
     "build:prod": "NODE_ENV=production ionic build --prod",
-    "build:test": "NODE_ENV=testing ionic build",
+    "build:test": "NODE_ENV=testing ionic build --configuration=testing",
     "dev:android": "ionic cordova run android --livereload",
     "dev:ios": "ionic cordova run ios",
     "prod:android": "NODE_ENV=production ionic cordova run android --prod",
@@ -75,9 +75,9 @@
     "@moodlehq/cordova-plugin-file-transfer": "1.7.1-moodle.2",
     "@moodlehq/cordova-plugin-inappbrowser": "5.0.0-moodle.2",
     "@moodlehq/cordova-plugin-ionic-webview": "5.0.0-moodle.1",
-    "@moodlehq/cordova-plugin-local-notification": "0.9.0-moodle.2",
+    "@moodlehq/cordova-plugin-local-notification": "0.9.0-moodle.3",
     "@moodlehq/cordova-plugin-qrscanner": "3.0.1-moodle.2",
-    "@moodlehq/phonegap-plugin-push": "2.2.3-moodle.1",
+    "@moodlehq/phonegap-plugin-push": "2.0.0-moodle.2",
     "@ngx-translate/core": "^13.0.0",
     "@ngx-translate/http-loader": "^6.0.0",
     "@types/chart.js": "^2.9.31",
@@ -123,13 +123,14 @@
     "mathjax": "2.7.7",
     "moment": "^2.29.0",
     "nl.kingsquare.cordova.background-audio": "^1.0.1",
-    "phonegap-plugin-multidex": "^1.0.0",
     "rxjs": "~6.5.5",
     "ts-md5": "^1.2.7",
     "tslib": "^2.0.1",
     "zone.js": "~0.10.3"
   },
   "devDependencies": {
+    "@angular-builders/custom-webpack": "^10.0.1",
+    "@angular-devkit/architect": "^0.1202.7",
     "@angular-devkit/build-angular": "~0.1000.8",
     "@angular-eslint/builder": "^4.2.0",
     "@angular-eslint/eslint-plugin": "^4.2.0",
@@ -150,6 +151,7 @@
     "@typescript-eslint/parser": "^4.22.0",
     "check-es-compat": "^1.1.1",
     "cordova-pdf-generator": "^2.1.1",
+    "cordova-plugin-androidx-adapter": "^1.1.3",
     "eslint": "^7.25.0",
     "eslint-config-prettier": "^8.3.0",
     "eslint-plugin-header": "^3.1.1",
@@ -171,6 +173,7 @@
     "jest-preset-angular": "^8.3.1",
     "jsonc-parser": "^2.3.1",
     "native-run": "^1.4.0",
+    "terser-webpack-plugin": "^4.2.3",
     "ts-jest": "^26.4.1",
     "ts-node": "~8.3.0",
     "typescript": "^3.9.9"
@@ -225,8 +228,9 @@
       "cordova-plugin-zip": {},
       "cordova-sqlite-storage": {},
       "@moodlehq/phonegap-plugin-push": {
-        "ANDROID_SUPPORT_V13_VERSION": "27.+",
-        "FCM_VERSION": "17.0.+"
+        "ANDROID_SUPPORT_V13_VERSION": "28.0.0",
+        "FCM_VERSION": "18.+",
+        "IOS_FIREBASE_MESSAGING_VERSION": "~> 6.32.2"
       },
       "com-darryncampbell-cordova-plugin-intent": {},
       "nl.kingsquare.cordova.background-audio": {},
@@ -239,7 +243,8 @@
       "cordova-pdf-generator": {},
       "cordova-plugin-globalization": {},
       "@moodlehq/cordova-plugin-file-transfer": {},
-      "cordova-plugin-prevent-override": {}
+      "cordova-plugin-prevent-override": {},
+      "cordova-plugin-androidx-adapter": {}
     }
   },
   "optionalDependencies": {
