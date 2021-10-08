@@ -1,8 +1,8 @@
 {
-    "app_id": "com.moodle.moodlemobile",
-    "appname": "Moodle Mobile",
-    "versioncode": 3960,
-    "versionname": "3.9.6-dev",
+    "app_id": "id.ac.unpar.moodlemobile",
+    "appname": "IDE UNPAR Mobile",
+    "versioncode": 20001,
+    "versionname": "2.0.1",
     "cache_update_frequency_usually": 420000,
     "cache_update_frequency_often": 1200000,
     "cache_update_frequency_sometimes": 3600000,
@@ -62,25 +62,14 @@
         "zh-tw": "正體中文"
     },
     "wsservice": "moodle_mobile_app",
-    "demo_sites": {
-        "student": {
-            "url": "https:\/\/school.moodledemo.net",
-            "username": "student",
-            "password": "moodle"
-        },
-        "teacher": {
-            "url": "https:\/\/school.moodledemo.net",
-            "username": "teacher",
-            "password": "moodle"
-        }
-    },
+    "demo_sites": [],
     "zoomlevels": {
         "normal": 100,
         "low": 110,
         "high": 120
     },
     "customurlscheme": "moodlemobile",
-    "siteurl": "",
+    "siteurl": "https://ide.unpar.ac.id/",
     "sitename": "",
     "multisitesdisplay": "",
     "sitefindersettings": {},
@@ -88,7 +77,7 @@
     "skipssoconfirmation": false,
     "forcedefaultlanguage": false,
     "privacypolicy": "https:\/\/moodle.net\/moodle-app-privacy\/",
-    "notificoncolor": "#f98012",
+    "notificoncolor": "#0d8722",
     "enableanalytics": false,
     "enableonboarding": true,
     "forceColorScheme": "",
