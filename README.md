@@ -1,5 +1,14 @@
-Moodle App
-=================
+IDE UNPAR App (unofficial)
+==========================
+
+This is the fork of the original Moodle App:
+
+* Customized with UNPAR branding
+* Auto-connects with UNPAR's IDE
+* Somewhat regularly synchonized from moodlehq's `integration` branch
+* Follow version numbering as in moodlehq
+
+## Moodle App
 
 This is the primary repository of source code for the official mobile app for Moodle.
 
@@ -9,7 +18,6 @@ This is the primary repository of source code for the official mobile app for Mo
 * [Bug Tracker](https://tracker.moodle.org/browse/MOBILE)
 * [Release Notes](https://docs.moodle.org/dev/Moodle_App_Release_Notes)
 
-License
--------
+### License
 
 [Apache 2.0](http://www.apache.org/licenses/LICENSE-2.0)
