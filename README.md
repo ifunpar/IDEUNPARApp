@@ -8,6 +8,16 @@ This is the fork of the original Moodle App:
 * Somewhat regularly synchonized from moodlehq's `integration` branch
 * Follow version numbering as in moodlehq
 
+## To Release
+
+Ensure you are using node version 14. There are plenty of options to manage
+different versions of node in one device.
+
+1. `npx ionic cordova build android --prod --release`
+2. `jarsigner -verbose -sigalg SHA1withRSA -digestalg SHA1 -keystore ~/Downloads/idemobile-release-key.keystore platforms/android/app/build/outputs/apk/release/app-release-unsigned.apk ide-unpar-mobile` (keystore path to be adjusted)
+3. `$ANDROID_SDK_ROOT/build-tools/29.0.2/zipalign -v 4 platforms/android/app/build/outputs/apk/release/app-release-unsigned.apk ideunparmobile.apk`
+4. Upload to Google Play
+
 ## Moodle App
 
 This is the primary repository of source code for the official mobile app for Moodle.
