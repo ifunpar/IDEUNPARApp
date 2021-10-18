@@ -14,8 +14,8 @@ Ensure you are using node version 14. There are plenty of options to manage
 different versions of node in one device.
 
 1. `npx ionic cordova build android --prod --release`
-2. `jarsigner -verbose -sigalg SHA1withRSA -digestalg SHA1 -keystore ~/Downloads/idemobile-release-key.keystore platforms/android/app/build/outputs/apk/release/app-release-unsigned.apk ide-unpar-mobile` (keystore path to be adjusted)
-3. `$ANDROID_SDK_ROOT/build-tools/29.0.2/zipalign -v 4 platforms/android/app/build/outputs/apk/release/app-release-unsigned.apk ideunparmobile.apk`
+2. `$ANDROID_SDK_ROOT/build-tools/31.0.0/apksigner sign --ks ~/Downloads/idemobile-release-key.keystore platforms/android/app/build/outputs/apk/release/app-release-unsigned.apk` (SDK and keystore path to be adjusted)
+3. `$ANDROID_SDK_ROOT/build-tools/31.0.0/zipalign -v 4 platforms/android/app/build/outputs/apk/release/app-release-unsigned.apk app-release.apk` (SDK path to be adjusted)
 4. Upload to Google Play
 
 ## Moodle App
