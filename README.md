@@ -15,8 +15,7 @@ different versions of node in one device.
 
 1. `npx ionic cordova build android --prod --release`
 2. `$ANDROID_SDK_ROOT/build-tools/31.0.0/apksigner sign --ks ~/Downloads/idemobile-release-key.keystore platforms/android/app/build/outputs/apk/release/app-release-unsigned.apk` (SDK and keystore path to be adjusted)
-3. `$ANDROID_SDK_ROOT/build-tools/31.0.0/zipalign -v 4 platforms/android/app/build/outputs/apk/release/app-release-unsigned.apk app-release.apk` (SDK path to be adjusted)
-4. Upload to Google Play
+3. Upload `app-release-unsigned.apk` to Google Play
 
 ## Moodle App
 
