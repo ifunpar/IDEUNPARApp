@@ -1849,6 +1849,7 @@
     "core.mainmenu.help": "Bantuan",
     "core.mainmenu.logout": "Keluar",
     "core.mainmenu.website": "Situs web",
+    "core.mainmenu.studentportal": "Portal Akademik Mahasiswa",
     "core.maxfilesize": "Ukuran maksimum untuk file baru: {{$a}}",
     "core.maxsizeandattachments": "Ukuran maksimal untuk file baru: {{$a.size}}, lampiran maksimum: {{$a.attachments}}",
     "core.min": "min",
